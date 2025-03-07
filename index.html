@@ -25,7 +25,7 @@
       position: relative;
     }
 
-    /* (1) Пульсирующее сердце (исчезает через 2.5 с) */
+    
     .back {
       position: fixed;
       width: 100vw;
@@ -72,7 +72,7 @@
       }
     }
 
-    /* (2) Контейнер с текстом: становится видимым после удаления .back */
+    
     .container {
       position: relative;
       z-index: 2;
@@ -84,7 +84,7 @@
       opacity: 1;
     }
 
-    /* Анимации для текста */
+    
     @keyframes appearAndScale {
       0% {
         opacity: 0;
@@ -105,9 +105,9 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* (2a) Текст: «С 8 МАРТОМ ЛЮБИМКА:З» */
+    
     .title {
-      /* УВЕЛИЧЕННЫЙ РАЗМЕР */
+      
       font-size: 10em; 
       font-weight: bold;
       margin-top: 20px;
@@ -123,23 +123,21 @@
       -webkit-text-fill-color: transparent;
 
       animation:
-        appearAndScale 3s forwards,    /* плавное появление 3s */
-        subtleBounce 3s infinite 3s,   /* покачивание с задержкой */
-        gradientShift 6s ease infinite;/* переливающийся градиент */
+        appearAndScale 3s forwards,    
+        subtleBounce 3s infinite 3s,   
+        gradientShift 6s ease infinite;
       opacity: 0;
       display: inline-block;
     }
 
-    /* Адаптация под мобильные устройства: 
-       если экран шире 770px — оставляем 8em, 
-       если уже — уменьшаем до 5em. */
+    
     @media (max-width: 770px) {
       .title {
-        font-size: 5em; /* Поменьше, чтобы влазило на экран телефона/планшета */
+        font-size: 5em; 
       }
     }
 
-    /* (3) Солнце: появляется плавно через 4с */
+    
     .sun {
       position: absolute;
       top: 10%;
@@ -157,7 +155,7 @@
     @keyframes sunFadeIn {
       0%   { opacity: 0; transform: translateX(-50%) scale(0.5); }
       100% { opacity: 1; transform: translateX(-50%) scale(1); }
-    }/* (4) Общее правило для облаков */
+    }
     .cloud {
       position: absolute;
       display: flex;
@@ -168,13 +166,13 @@
       width: 200px;
       height: 120px;
       left: -25%;
-      opacity: 0; /* спрятано до удаления .back */
+      opacity: 0; 
     }
     body[data-loaded="true"] .cloud {
       opacity: 1;
     }
 
-    /* Комки облака: радиальный градиент для псевдо-объёма */
+    
     .cloud-lump {
       position: absolute;
       border-radius: 50%;
@@ -214,7 +212,7 @@
       100% { left: 120%; }
     }
 
-    /* Разные облака с разной скоростью/задержкой */
+   
     .cloud1 {
       top: 20%;
       animation: moveCloud 20s linear infinite;
@@ -246,7 +244,7 @@
       animation-delay: 10s;
     }
 
-    /* (5) Искры */
+    
     .sparkles {
       position: absolute;
       width: 100%;
@@ -272,20 +270,20 @@
   </style>
 </head>
 <body>
-  <!-- (1) Сердце -->
+  
   <div class="back">
     <div class="heart"></div>
   </div>
 
-  <!-- (2) Текст -->
+  
   <div class="container">
     <div class="title">С 8 МАРТОМ ЛЮБИМКА:З</div>
   </div>
 
-  <!-- (3) Солнце -->
+  
   <div class="sun"></div>
 
-  <!-- (4) Шесть облаков с разной скоростью и задержкой -->
+  
   <div class="cloud cloud1">
     <div class="cloud-lump lump1"></div>
     <div class="cloud-lump lump2"></div>
@@ -328,23 +326,23 @@
   <div class="cloud-lump lump5"></div>
 </div>
 
-<!-- (5) Искры -->
+
 <div class="sparkles"></div>
 
 <script>
   window.onload = function() {
-    // Исчезновение сердечка .back
+    
     const back = document.querySelector('.back');
     setTimeout(() => {
       back.style.opacity = '0';
       setTimeout(() => {
         back.remove();
-        // Показываем остальное
+        
         document.body.setAttribute('data-loaded', 'true');
       }, 1000);
     }, 2500);
 
-    // Создаём искры
+    
     const sparkleContainer = document.querySelector('.sparkles');
     for (let i = 0; i < 150; i++) {
       let sparkle = document.createElement('div');
